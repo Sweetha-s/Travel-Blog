@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucket List</title>
+
+  <!-- Linking jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Reset for body */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #87CEEB;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: left;
+    }
+
+    /* Container to hold both the bucket list and images */
+    .content-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Bucket List Section */
+    .bucket-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Vertical centering */
+      align-items: center; /* Horizontal centering */
+      padding: 20px;
+      height: 100vh; /* Full viewport height */
+    }
+
+    .bucket-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 50px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 200px;
+      position: fixed;
+    }
+
+    .experience-text {
+      font-size: 24px;
+      color: #333;
+      font-weight: 500;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px; /* Limit the width of the text container */
+      text-align: center; /* Center text */
+      position: fixed;
+    }
+
+    /* Back Button Styles */
+    .back-button {
+      position: fixed; /* Fixed positioning */
+      top: 20px; /* Distance from the top */
+      left: 20px; /* Distance from the left */
+      padding: 10px 20px;
+      font-size: 18px;
+      color: white;
+      background-color: #FF5733; /* New button color */
+      border: none;
+      border-radius: 5px;
+      text-decoration: none; /* Remove underline */
+      display: inline-block; /* Make it a block-level element */
+    }
+
+    .back-button:hover {
+      background-color: #C70039; /* Darker shade on hover */
+    }
+
+    /* Image Container */
+    .image-container {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px;
+      align-items: start;
+    }
+
+    .image-item {
+      text-align: center;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    /* Fade-in animation for images */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .image-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .caption {
+      font-size: 20px;
+      color: #333;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .description {
+      font-size: 16px;
+      color: #666;
+      padding: 10px;
+      background-color: #f9f9f9;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    /* Animation Delay for Staggered Effect */
+    .image-item:nth-child(1) { animation-delay: 0.3s; }
+    .image-item:nth-child(2) { animation-delay: 0.6s; }
+    .image-item:nth-child(3) { animation-delay: 0.9s; }
+    .image-item:nth-child(4) { animation-delay: 1.2s; }
+    .image-item:nth-child(5) { animation-delay: 1.5s; }
+    .image-item:nth-child(6) { animation-delay: 1.8s; }
+    .image-item:nth-child(7) { animation-delay: 2.1s; }
+    .image-item:nth-child(8) { animation-delay: 2.4s; }
+    .image-item:nth-child(9) { animation-delay: 2.7s; }
+    .image-item:nth-child(10) { animation-delay: 3.0s; }
+    .image-item:nth-child(11) { animation-delay: 3.3s; }
+    .image-item:nth-child(12) { animation-delay: 3.6s; }
+    .image-item:nth-child(13) { animation-delay: 3.9s; }
+    .image-item:nth-child(14) { animation-delay: 4.2s; }
+    .image-item:nth-child(15) { animation-delay: 4.5s; }
+    .image-item:nth-child(16) { animation-delay: 4.8s; }
+    .image-item:nth-child(17) { animation-delay: 5.1s; }
+    .image-item:nth-child(18) { animation-delay: 5.4s; }
+    .image-item:nth-child(19) { animation-delay: 5.7s; }
+    .image-item:nth-child(20) { animation-delay: 6.0s; }
+  </style>
+</head>
+
+<body>
+
+  <div class="content-container">
+    <!-- Left Section: Bucket List Title and Description -->
+    <div class="bucket-list">
+      <h1 class="bucket-title">BUCKET LIST</h1>
+      <div class="experience-text">
+        Embark on a breathtaking journey through India’s wonders, from majestic monuments to serene landscapes!
+      </div>
+      <!-- The back button is now fixed in the top left corner -->
+      <a href="index.html" class="back-button">Back</a>
+    </div>
+
+    <!-- Right Section: Image Gallery with Captions and Descriptions -->
+    <div class="image-container" id="imageContainer">
+      <div class="image-item">
+        <img src="image/tulip.jpg" alt="Kashmir's Tulip Festival">
+        <div class="caption">Kashmir's Tulip Festival</div>
+        <div class="description">Experience the stunning Tulip Festival in Kashmir, showcasing vibrant colors and breathtaking views.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/Nubra-Valley.jpg" alt="Nubra Valley">
+        <div class="caption">Nubra Valley</div>
+        <div class="description">Visit Nubra Valley, famous for its beautiful landscapes and unique double-humped camels.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/anda.jpg" alt="Andaman Islands">
+        <div class="caption">Andaman & Nicobar Islands</div>
+        <div class="description">Relax on the pristine beaches and explore the natural beauty of the Andaman Islands.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/keralaboat.jpg" alt="Backwaters of Kerala">
+        <div class="caption">Backwaters of Kerala</div>
+        <div class="description">Sail through the serene backwaters of Kerala, a unique and tranquil experience.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/mahab.jpg" alt="Mahabalipuram">
+        <div class="caption">Mahabalipuram</div>
+        <div class="description">Visit the ancient rock-cut temples and sculptures of Mahabalipuram.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/jaisalmer.jpg" alt="Jaisalmer Fort">
+        <div class="caption">Jaisalmer Fort</div>
+        <div class="description">Discover the golden city of Jaisalmer and its stunning fort architecture.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/sundar.jpg" alt="Sundarbans National Park">
+        <div class="caption">Sundarbans National Park</div>
+        <div class="description">Explore the unique mangrove forests and wildlife of Sundarbans, a UNESCO World Heritage site.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/rishikesh.jpg" alt="Rishikesh">
+        <div class="caption">Rishikesh</div>
+        <div class="description">Join the spiritual retreat and adventure activities in Rishikesh, the Yoga Capital of the World.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/uttarakhand.jpg" alt="Uttarakhand Mountains">
+        <div class="caption">Uttarakhand Mountains</div>
+        <div class="description">Explore the stunning landscapes and trekking opportunities in the Uttarakhand mountains.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/taj.jpg" alt="Taj Mahal">
+        <div class="caption">Taj Mahal</div>
+        <div class="description">Visit the iconic Taj Mahal in Agra, a symbol of love and a UNESCO World Heritage site.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/redfort.jpg" alt="Red Fort">
+        <div class="caption">Red Fort</div>
+        <div class="description">Explore the grandeur of Red Fort, an important historical monument in Delhi.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/nandadevi.jpg" alt="Nanda Devi">
+        <div class="caption">Nanda Devi National Park</div>
+        <div class="description">Discover the Nanda Devi National Park, a UNESCO World Heritage site in Uttarakhand.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/goa.jpg" alt="Goa">
+        <div class="caption">Goa Beaches</div>
+        <div class="description">Relax at the beautiful beaches of Goa, known for their sandy shores and vibrant culture.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/varangates.jpg" alt="Varanasi">
+        <div class="caption">Varanasi Ghats</div>
+        <div class="description">Experience the spiritual energy of Varanasi’s ghats, one of the oldest cities in India.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/darrail.jpg" alt="Darjeeling">
+        <div class="caption">Darjeeling Himalayan Railway</div>
+        <div class="description">Take a ride on the famous Darjeeling Himalayan Railway, a UNESCO-listed heritage train route.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/ladakh.jpg" alt="Ladakh">
+        <div class="caption">Ladakh</div>
+        <div class="description">Marvel at the breathtaking landscapes and monasteries in Ladakh, a place of serene beauty.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/virupaksha.jpg" alt="Virupaksha Temple">
+        <div class="caption">Hampi Ruins</div>
+        <div class="description">Explore the ancient ruins of Hampi, a UNESCO World Heritage site in Karnataka.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/vall.jpg" alt="Valley of Flowers">
+        <div class="caption">Valley of Flowers</div>
+        <div class="description">Discover the breathtaking beauty of the Valley of Flowers in Uttarakhand, a UNESCO World Heritage site.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/golden_temple.jpg" alt="Golden Temple">
+        <div class="caption">Golden Temple</div>
+        <div class="description">Visit the Golden Temple in Amritsar, a spiritual and cultural landmark of Sikhism.</div>
+      </div>
+
+      <div class="image-item">
+        <img src="image/ajanta.jpg" alt="Ajanta Caves">
+        <div class="caption">Ajanta Caves</div>
+        <div class="description">Explore the ancient rock-cut caves of Ajanta, known for their stunning frescoes and sculptures.</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
