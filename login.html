@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blogger Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .bg {
+            background-image: url("image/backkk.jpg"); /* Replace with your image URL */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background-image: url("image/blue.jpeg");
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        .quote-section {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .form-section {
+            background-color: #223363;
+            width: 50%;
+            padding: 40px;
+            border-radius: 0 10px 10px 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-section .social-icons a {
+            font-size: 1.5rem;
+            color: white;
+            margin: 0 10px;
+        }
+
+        .form-section .form-control {
+            margin-bottom: 20px;
+            background-color: #2E4A7F;
+            color: white;
+            border: none;
+        }
+
+        .form-section .form-control:focus {
+            background-color: #2E4A7F;
+            color: white;
+            border: 1px solid #4CAF50;
+            box-shadow: none;
+        }
+
+        .form-section .btn {
+            background-color: white;
+            color: #223363;
+            border: none;
+            padding: 10px 30px;
+            font-weight: bold;
+        }
+
+        .form-section .forgot-password {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Roaming Stories</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#bucketlist">Bucket List</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#journeyhub">Journey Hub</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#packingguide">Packing Guide</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#noteworthy">Noteworthy</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="bg">
+    <div class="login-container">
+        <div class="quote-section">
+            <p>Life is a book, and those who do not travel read only one page.</p>
+        </div>
+        <div class="form-section">
+            <h2>TRAVEL BLOGGER</h2>
+            <form onsubmit="redirectToIndex(event)">
+                <input type="email" class="form-control" placeholder="Email" required>
+                <input type="password" class="form-control" placeholder="Password" required>
+                <a href="#" class="forgot-password">Forgot Your Password?</a>
+                <button type="submit" class="btn mt-3">ENTER</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/bootstrap-icons.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function redirectToIndex(event) {
+        event.preventDefault(); // Prevent the default form submission
+        window.location.href = 'index.html'; // Redirect to index.html
+    }
+</script>
+</body>
+</html>
